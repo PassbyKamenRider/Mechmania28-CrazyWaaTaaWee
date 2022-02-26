@@ -1,4 +1,4 @@
-package mech.mania.main.java;
+package main.java.mech.mania;
 
 public class Main {
     public static void main(String[] args) {
