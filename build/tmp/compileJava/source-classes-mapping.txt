@@ -1,0 +1,43 @@
+StarterPack/player/Position.java
+ StarterPack.player.Position
+StarterPack/player/PlayerState.java
+ StarterPack.player.PlayerState
+StarterPack/player/StatSet.java
+ StarterPack.player.StatSet
+StarterPack/action/UseAction.java
+ StarterPack.action.UseAction
+StarterPack/Strategy.java
+ StarterPack.Strategy
+StarterPack/networking/CommState.java
+ StarterPack.networking.CommState
+StarterPack/player/Item.java
+ StarterPack.player.Item
+StarterPack/Config.java
+ StarterPack.Config
+StarterPack/action/BuyAction.java
+ StarterPack.action.BuyAction
+StarterPack/player/CharacterClass.java
+ StarterPack.player.CharacterClass
+StarterPack/util/Utility.java
+ StarterPack.util.Utility
+StarterPack/action/MoveAction.java
+ StarterPack.action.MoveAction
+StarterPack/GameState.java
+ StarterPack.GameState
+StarterPack/action/Action.java
+ StarterPack.action.Action
+StarterPack/MyStrategy.java
+ StarterPack.MyStrategy
+StarterPack/action/AttackAction.java
+ StarterPack.action.AttackAction
+StarterPack/networking/Client.java
+ StarterPack.networking.Client
+StarterPack/networking/Router.java
+ StarterPack.networking.Router
+ StarterPack.networking.Router$1
+StarterPack/Main.java
+ StarterPack.Main
+ StarterPack.Main$1
+ StarterPack.Main$Phase
+StarterPack/networking/Server.java
+ StarterPack.networking.Server

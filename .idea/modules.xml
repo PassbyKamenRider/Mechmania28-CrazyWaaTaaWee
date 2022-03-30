@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Java-Starterpack.iml" filepath="$PROJECT_DIR$/.idea/Java-Starterpack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Java-Starterpack.iml" filepath="$PROJECT_DIR$/.idea/modules/Java-Starterpack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Java-Starterpack.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Java-Starterpack.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Java-Starterpack.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Java-Starterpack.test.iml" />
     </modules>
   </component>
 </project>
