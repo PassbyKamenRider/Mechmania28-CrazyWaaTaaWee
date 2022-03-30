@@ -1,4 +1,8 @@
-networking/ServerClientTest.java
- networking.ServerClientTest
 networking/RouterTest.java
  networking.RouterTest
+TestingServer.java
+ TestingServer
+MainTest.java
+ MainTest
+networking/ServerClientTest.java
+ networking.ServerClientTest

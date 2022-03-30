@@ -45,6 +45,7 @@ public class Router {
             switch (commState) {
                 case START:
                     while (!client.read().equals("wake")) continue;
+                    System.out.println("recieved server ping");
                     commState = CommState.NUM_ASSIGN;
                     break;
                 case NUM_ASSIGN:
@@ -52,6 +53,7 @@ public class Router {
                     String read = client.read();
                     System.out.println(read);
                     playerNumber = Integer.parseInt(read);
+                    System.out.println("recieved number");
                     commState = CommState.CLASS_REPORT;
                     break;
                 case CLASS_REPORT:
@@ -150,11 +152,11 @@ public class Router {
         return message;
     }
 
-    public GameState parseMessageAsGameState(String message) {
+    public static GameState parseMessageAsGameState(String message) {
 
         GameState result;
         try {
-            result = objectMapper.readValue(message, GameState.class);
+            result = new ObjectMapper().readValue(message, GameState.class);
             return result;
         } catch (JsonProcessingException e) {
             e.printStackTrace();

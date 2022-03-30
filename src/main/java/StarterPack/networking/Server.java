@@ -18,24 +18,63 @@ public class Server {
   private final List<Socket> clientSockets;
   private ServerSocket serverSocket;
   private boolean open;
+  private List<BufferedReader> inList;
+  private List<PrintWriter> outList;
+
+  private BufferedReader in0;
+  private PrintWriter out0;
+
+  private int clientCount;
+
 
   public Server(int portNumber, int clientCount) {
     this.portNumber = portNumber;
     this.open = false;
     this.clientSockets = Arrays.asList(new Socket[clientCount]);
+    this.clientCount = clientCount;
   }
 
   /** Starts a server at the port number passed into the constructor. */
   public void open() {
     try {
       this.serverSocket = new ServerSocket(portNumber);
-      for (int i = 0; i < clientSockets.size(); i++) {
+      for (int i = 0; i < clientCount; i++) {
           clientSockets.set(i, serverSocket.accept());
       }
       this.open = true;
     } catch (IOException e) {
       e.printStackTrace();
     }
+    inList = new ArrayList<>();
+    outList = new ArrayList<>();
+//    try {
+//      in0 = new BufferedReader(new InputStreamReader(clientSockets.get(0).getInputStream()));
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//
+//    try {
+//         out0 = new PrintWriter(clientSockets.get(0).getOutputStream(), true);
+//      } catch (IOException e) {
+//        e.printStackTrace();
+//      }
+
+    for (int i = 0; i < clientCount; i++) {
+      try {
+        BufferedReader in = new BufferedReader(new InputStreamReader(clientSockets.get(i).getInputStream()));
+        inList.add(in);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      try {
+        PrintWriter out = new PrintWriter(clientSockets.get(i).getOutputStream(), true);
+        outList.add(out);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+    }
+
   }
 
   /**
@@ -46,11 +85,12 @@ public class Server {
   public List<String> readAll() {
     try {
       List<String> reads = new ArrayList<>();
-      for (Socket socket : clientSockets) {
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+      for (int i = 0; i < clientCount; i++) {
+        BufferedReader in = inList.get(i);
         String line;
-        while ((line = in.readLine()) != null)
-        reads.add(line);
+        if ((line = in.readLine()) != null) {
+          reads.add(line);
+        }
       }
       return reads;
     } catch (IOException e) {
@@ -87,14 +127,11 @@ public class Server {
    * @param string String to be written.
    */
   public void writeAll(String string) {
-    try {
-      for (Socket socket : clientSockets) {
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        out.println(string);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
+    for (int i = 0; i < clientCount; i++) {
+      PrintWriter out = outList.get(i);
+      out.println(string);
     }
+
   }
 
   /**
@@ -103,12 +140,21 @@ public class Server {
    * @param string String to be written.
    */
   public void write(String string, int i) {
+    PrintWriter out = outList.get(i);
+    out.println(string);
+  }
+
+  public void write0(String string) {
+    outList.get(0).println(string);
+  }
+
+  public String read0() {
     try {
-      PrintWriter out = new PrintWriter(clientSockets.get(i).getOutputStream(), true);
-      out.println(string);
+      return inList.get(0).readLine();
     } catch (IOException e) {
       e.printStackTrace();
     }
+    return "";
   }
 
   public boolean isOpen() {

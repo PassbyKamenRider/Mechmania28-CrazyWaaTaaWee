@@ -38,11 +38,11 @@ public class Client {
    * @return Line read from server.
    */
   public String read() {
-    try {
-      return in.readLine();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+      try {
+        return in.readLine();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     return null;
   }
 
