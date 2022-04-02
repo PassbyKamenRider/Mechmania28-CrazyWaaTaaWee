@@ -1,10 +1,14 @@
 package StarterPack;
 
-import StarterPack.action.*;
+import StarterPack.action.AttackAction;
+import StarterPack.action.BuyAction;
+import StarterPack.action.MoveAction;
+import StarterPack.action.UseAction;
 import StarterPack.networking.Client;
 import StarterPack.networking.CommState;
 import StarterPack.networking.Router;
 import StarterPack.player.CharacterClass;
+import StarterPack.player.Item;
 import StarterPack.player.Position;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -74,10 +78,12 @@ public class Main {
             switch (phase) {
                 case USE:
                     try {
-                        resultString = objectMapper.writeValueAsString(new UseAction(playerIndex));
+                        resultString = objectMapper.writeValueAsString(new UseAction(playerIndex, false));
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
+
+                    phase = Phase.MOVE;
                     break;
                 case MOVE:
                     try {
@@ -86,6 +92,7 @@ public class Main {
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
+                    phase = Phase.ATTACK;
                     break;
                 case ATTACK:
                     try {
@@ -93,17 +100,20 @@ public class Main {
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
+                    phase = Phase.BUY;
                     break;
                 case BUY:
                     try {
-                        resultString = objectMapper.writeValueAsString(new BuyAction(playerIndex));
+                        resultString = objectMapper.writeValueAsString(new BuyAction(playerIndex, Item.NONE));
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
+                    phase = Phase.USE;
                     break;
             }
-
+            System.out.println(resultString);
             client.write(resultString);
+
 
         }
 
