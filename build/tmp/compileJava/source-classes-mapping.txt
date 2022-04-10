@@ -4,8 +4,10 @@ StarterPack/player/Position.java
  StarterPack.player.Position
 StarterPack/player/StatSet.java
  StarterPack.player.StatSet
-StarterPack/util/Utility.java
- StarterPack.util.Utility
+StarterPack/action/UseAction.java
+ StarterPack.action.UseAction
+StarterPack/networking/Router.java
+ StarterPack.networking.Router
 StarterPack/player/CharacterClass.java
  StarterPack.player.CharacterClass
 StarterPack/networking/CommState.java
@@ -24,29 +26,33 @@ StarterPack/player/Item.java
  StarterPack.player.Item$9
 StarterPack/Config.java
  StarterPack.Config
-StarterPack/networking/Server.java
- StarterPack.networking.Server
-StarterPack/networking/Client.java
- StarterPack.networking.Client
 StarterPack/action/BuyAction.java
  StarterPack.action.BuyAction
-StarterPack/action/Action.java
- StarterPack.action.Action
-StarterPack/action/MoveAction.java
- StarterPack.action.MoveAction
+StarterPack/networking/Client.java
+ StarterPack.networking.Client
+mech/mania/Main.java
+ main.java.mech.mania.Main
 StarterPack/action/AttackAction.java
  StarterPack.action.AttackAction
-StarterPack/action/UseAction.java
- StarterPack.action.UseAction
+StarterPack/action/MoveAction.java
+ StarterPack.action.MoveAction
+StarterPack/networking/Server.java
+ StarterPack.networking.Server
+StarterPack/action/Action.java
+ StarterPack.action.Action
+StarterPack/util/Utility.java
+ StarterPack.util.Utility
+StarterPack/NullStrategy.java
+ StarterPack.NullStrategy
 StarterPack/GameState.java
  StarterPack.GameState
-StarterPack/networking/Router.java
- StarterPack.networking.Router
 StarterPack/Strategy.java
  StarterPack.Strategy
+StarterPack/FromStdinStrategy.java
+ StarterPack.FromStdinStrategy
+StarterPack/RandomStrategy.java
+ StarterPack.RandomStrategy
 StarterPack/Main.java
  StarterPack.Main
  StarterPack.Main$1
  StarterPack.Main$Phase
-StarterPack/MyStrategy.java
- StarterPack.MyStrategy

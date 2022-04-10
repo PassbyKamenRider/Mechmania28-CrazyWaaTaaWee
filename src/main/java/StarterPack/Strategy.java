@@ -4,26 +4,16 @@ import StarterPack.player.CharacterClass;
 import StarterPack.player.Item;
 import StarterPack.player.Position;
 
-public class Strategy {
+public interface Strategy {
 
-    public CharacterClass initialClass() {
-        return CharacterClass.KNIGHT;
-    }
+    public abstract CharacterClass initialClass();
 
-    public Position moveActionDecision(GameState gameState, int myPlayerIndex) {
-        return new Position(0, 0);
-    }
+    public abstract Position moveActionDecision(GameState gameState, int myPlayerIndex);
 
-    public int attackActionDecision(GameState gameState, int myPlayerIndex) {
-        return 0;
-    }
+    public abstract int attackActionDecision(GameState gameState, int myPlayerIndex);
 
-    public Item buyActionDecision(GameState gameState, int myPlayerIndex) {
-        return null;
-    }
+    public abstract Item buyActionDecision(GameState gameState, int myPlayerIndex);
 
-    public boolean useActionDecision(GameState gameState, int myPlayerIndex) {
-        return false;
-    }
+    public abstract boolean useActionDecision(GameState gameState, int myPlayerIndex);
 
 }

@@ -7,13 +7,8 @@ import StarterPack.action.UseAction;
 import StarterPack.networking.Client;
 import StarterPack.networking.CommState;
 import StarterPack.networking.Router;
-import StarterPack.player.CharacterClass;
-import StarterPack.player.Item;
-import StarterPack.player.Position;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.Random;
 
 public class Main {
     static enum Phase { USE, MOVE, ATTACK, BUY };
@@ -21,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         // Establish connection, send Ping message
 
-        Strategy strategy = new Strategy();
+        Strategy strategy = new RandomStrategy();
         int playerIndex = -1;
 
         Client client = new Client(Integer.parseInt(args[0]));
@@ -45,11 +40,15 @@ public class Main {
                     String read = client.read();
                     playerIndex = Integer.parseInt(read);
                     System.out.println("Received player index: " + read);
+
+//                    if (playerIndex == 0) {
+//                        strategy = new FromStdinStrategy();
+//                    }
                     commState = CommState.CLASS_REPORT;
                     break;
                 case CLASS_REPORT:
                     client.write(
-                            CharacterClass.values()[new Random().nextInt(CharacterClass.values().length)]);
+                            strategy.initialClass());
                     commState = CommState.IN_GAME;
                     break;
                 case IN_GAME:
@@ -78,7 +77,8 @@ public class Main {
             switch (phase) {
                 case USE:
                     try {
-                        resultString = objectMapper.writeValueAsString(new UseAction(playerIndex, false));
+                        resultString = objectMapper.writeValueAsString(new UseAction(playerIndex,
+                                strategy.useActionDecision(gameState, playerIndex)));
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
@@ -87,8 +87,8 @@ public class Main {
                     break;
                 case MOVE:
                     try {
-                        resultString = objectMapper.writeValueAsString(new MoveAction(
-                                playerIndex, new Position(0, 0)));
+                        resultString = objectMapper.writeValueAsString(new MoveAction(playerIndex,
+                                strategy.moveActionDecision(gameState, playerIndex)));
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
@@ -96,7 +96,8 @@ public class Main {
                     break;
                 case ATTACK:
                     try {
-                        resultString = objectMapper.writeValueAsString(new AttackAction(playerIndex, 0));
+                        resultString = objectMapper.writeValueAsString(new AttackAction(playerIndex,
+                                strategy.attackActionDecision(gameState, playerIndex)));
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
@@ -104,7 +105,8 @@ public class Main {
                     break;
                 case BUY:
                     try {
-                        resultString = objectMapper.writeValueAsString(new BuyAction(playerIndex, Item.NONE));
+                        resultString = objectMapper.writeValueAsString(new BuyAction(playerIndex,
+                                strategy.buyActionDecision(gameState, playerIndex)));
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
