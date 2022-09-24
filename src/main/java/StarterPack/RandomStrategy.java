@@ -8,7 +8,7 @@ import StarterPack.util.Utility;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomStrategy implements Strategy{
-    public CharacterClass initialClass() {
+    public CharacterClass strategyInitialize() {
         return CharacterClass.WIZARD;
     }
 

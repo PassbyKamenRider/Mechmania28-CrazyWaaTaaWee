@@ -1,16 +1,7 @@
-import StarterPack.Main;
-import StarterPack.action.AttackAction;
-import StarterPack.networking.Server;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainTest {
 
@@ -49,6 +40,3 @@ public class MainTest {
 //        runAllCallables(Arrays.asList(s, client));
 
     }
-
-
-}

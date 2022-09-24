@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 
 public class FromStdinStrategy implements Strategy {
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    public CharacterClass initialClass() {
+    public CharacterClass strategyInitialize() {
         String s = "KNIGHT";
         try {
             s = bufferedReader.readLine();

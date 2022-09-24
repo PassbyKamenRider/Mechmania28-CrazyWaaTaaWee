@@ -2,9 +2,11 @@ package StarterPack.player;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Represents the entire state of a Player. */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PlayerState {
   @JsonProperty("class")
   private CharacterClass characterClass;

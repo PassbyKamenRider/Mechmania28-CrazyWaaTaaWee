@@ -6,7 +6,7 @@ import StarterPack.player.Position;
 
 public interface Strategy {
 
-    public abstract CharacterClass initialClass();
+    public abstract CharacterClass strategyInitialize();
 
     public abstract Position moveActionDecision(GameState gameState, int myPlayerIndex);
 

@@ -41,14 +41,14 @@ public class Main {
                     playerIndex = Integer.parseInt(read);
                     System.out.println("Received player index: " + read);
 
-//                    if (playerIndex == 0) {
-//                        strategy = new FromStdinStrategy();
-//                    }
+                    if (playerIndex == 0) {
+                        strategy = new CrashingStrategy();
+                    }
                     commState = CommState.CLASS_REPORT;
                     break;
                 case CLASS_REPORT:
                     client.write(
-                            strategy.initialClass());
+                            strategy.strategyInitialize());
                     commState = CommState.IN_GAME;
                     break;
                 case IN_GAME:
