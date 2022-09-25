@@ -7,12 +7,12 @@ import StarterPack.player.Position;
 public class CrashingStrategy implements Strategy {
     @Override
     public CharacterClass strategyInitialize() {
-        return null;
+        return CharacterClass.KNIGHT;
     }
 
     @Override
     public Position moveActionDecision(GameState gameState, int myPlayerIndex) {
-        return null;
+        return new Position(0,0);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class CrashingStrategy implements Strategy {
 
     @Override
     public Item buyActionDecision(GameState gameState, int myPlayerIndex) {
-        return null;
+        return Item.NONE;
     }
 
     @Override

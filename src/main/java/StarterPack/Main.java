@@ -81,6 +81,9 @@ public class Main {
                                 strategy.useActionDecision(gameState, playerIndex)));
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
+                    } catch (Exception e) {
+                        client.disconnect();
+                        e.printStackTrace();
                     }
 
                     phase = Phase.MOVE;
@@ -91,6 +94,9 @@ public class Main {
                                 strategy.moveActionDecision(gameState, playerIndex)));
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
+                    } catch (Exception e) {
+                        client.disconnect();
+                        e.printStackTrace();
                     }
                     phase = Phase.ATTACK;
                     break;
@@ -100,6 +106,9 @@ public class Main {
                                 strategy.attackActionDecision(gameState, playerIndex)));
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
+                    } catch (Exception e) {
+                        client.disconnect();
+                        e.printStackTrace();
                     }
                     phase = Phase.BUY;
                     break;
@@ -108,6 +117,9 @@ public class Main {
                         resultString = objectMapper.writeValueAsString(new BuyAction(playerIndex,
                                 strategy.buyActionDecision(gameState, playerIndex)));
                     } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        client.disconnect();
                         e.printStackTrace();
                     }
                     phase = Phase.USE;
