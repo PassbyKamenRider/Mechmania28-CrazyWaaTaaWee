@@ -1,9 +1,9 @@
-package StarterPack;
+package starterpack;
 
-import StarterPack.player.CharacterClass;
-import StarterPack.player.Item;
-import StarterPack.player.Position;
-import StarterPack.util.Utility;
+import starterpack.player.CharacterClass;
+import starterpack.player.Item;
+import starterpack.player.Position;
+import starterpack.util.Utility;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -48,10 +48,10 @@ public class RandomStrategy implements Strategy{
     }
 
     public Item buyActionDecision(GameState gameState, int myPlayerIndex) {
-        return Item.NONE;
+        return Utility.randomEnum(Item.class);
     }
 
     public boolean useActionDecision(GameState gameState, int myPlayerIndex) {
-        return false;
+        return true;
     }
 }

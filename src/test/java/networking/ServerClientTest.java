@@ -1,7 +1,7 @@
 package networking;
 
-import StarterPack.networking.Client;
-import StarterPack.networking.Server;
+import starterpack.networking.Client;
+import starterpack.networking.Server;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 

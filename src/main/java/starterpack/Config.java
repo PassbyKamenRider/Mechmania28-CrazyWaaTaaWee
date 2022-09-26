@@ -1,4 +1,4 @@
-package StarterPack;
+package starterpack;
 
 public class Config {
     public static final int BOARD_SIZE = 10;

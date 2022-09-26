@@ -1,4 +1,4 @@
-package StarterPack.player;
+package starterpack.player;
 
 public enum Item {
   SHIELD(new StatSet(0, 0, 0, 0), 1, 8) {

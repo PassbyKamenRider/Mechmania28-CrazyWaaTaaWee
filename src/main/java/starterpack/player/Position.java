@@ -1,4 +1,4 @@
-package StarterPack.player;
+package starterpack.player;
 
 public class Position {
   private int x;

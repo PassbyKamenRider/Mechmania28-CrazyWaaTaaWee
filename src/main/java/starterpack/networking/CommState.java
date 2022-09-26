@@ -1,4 +1,4 @@
-package StarterPack.networking;
+package starterpack.networking;
 
 public enum CommState {
   START,

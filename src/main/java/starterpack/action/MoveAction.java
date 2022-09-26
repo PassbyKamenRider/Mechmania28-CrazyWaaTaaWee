@@ -1,9 +1,9 @@
-package StarterPack.action;
+package starterpack.action;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import StarterPack.player.Position;
+import starterpack.player.Position;
 
 public class MoveAction extends Action{
     private final Position destination;

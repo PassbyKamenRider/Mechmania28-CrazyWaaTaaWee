@@ -1,8 +1,8 @@
-package StarterPack;
+package starterpack;
 
-import StarterPack.player.CharacterClass;
-import StarterPack.player.Item;
-import StarterPack.player.Position;
+import starterpack.player.CharacterClass;
+import starterpack.player.Item;
+import starterpack.player.Position;
 
 public class NullStrategy implements Strategy {
 

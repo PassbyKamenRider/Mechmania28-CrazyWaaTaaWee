@@ -1,18 +1,18 @@
-package StarterPack;
+package starterpack;
 
-import StarterPack.action.AttackAction;
-import StarterPack.action.BuyAction;
-import StarterPack.action.MoveAction;
-import StarterPack.action.UseAction;
-import StarterPack.player.*;
-import StarterPack.util.Utility;
+import starterpack.action.AttackAction;
+import starterpack.action.BuyAction;
+import starterpack.action.MoveAction;
+import starterpack.action.UseAction;
+import starterpack.player.*;
+import starterpack.util.Utility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static StarterPack.Config.BOARD_SIZE;
+import static starterpack.Config.BOARD_SIZE;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GameState {

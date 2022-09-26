@@ -1,12 +1,12 @@
-package StarterPack;
+package starterpack;
 
-import StarterPack.action.AttackAction;
-import StarterPack.action.BuyAction;
-import StarterPack.action.MoveAction;
-import StarterPack.action.UseAction;
-import StarterPack.networking.Client;
-import StarterPack.networking.CommState;
-import StarterPack.networking.Router;
+import starterpack.action.AttackAction;
+import starterpack.action.BuyAction;
+import starterpack.action.MoveAction;
+import starterpack.action.UseAction;
+import starterpack.networking.Client;
+import starterpack.networking.CommState;
+import starterpack.networking.Router;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

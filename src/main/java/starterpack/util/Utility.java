@@ -1,8 +1,9 @@
-package StarterPack.util;
+package starterpack.util;
 
-import StarterPack.Config;
-import StarterPack.player.Position;
+import starterpack.Config;
+import starterpack.player.Position;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Utility {
@@ -24,6 +25,12 @@ public class Utility {
         && (p.getX() < Config.BOARD_SIZE)
         && (p.getY() >= 0)
         && (p.getY() < Config.BOARD_SIZE));
+  }
+
+  public static <T extends Enum<?>> T randomEnum(Class<T> clazz){
+    Random random = new Random();
+    int x = random.nextInt(clazz.getEnumConstants().length);
+    return clazz.getEnumConstants()[x];
   }
 
 

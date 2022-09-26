@@ -1,4 +1,4 @@
-package StarterPack.player;
+package starterpack.player;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
