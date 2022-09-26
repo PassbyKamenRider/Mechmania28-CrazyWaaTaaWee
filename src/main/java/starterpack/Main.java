@@ -57,16 +57,20 @@ public class Main {
 
                     switch (playerIndex) {
                         case 0:
-                            strategy = StrategiesForEachBot.strategyAsBot0;
+                            if (StrategiesForEachBot.strategyAsBot0 != null)
+                                strategy = StrategiesForEachBot.strategyAsBot0;
                             break;
                         case 1:
-                            strategy = StrategiesForEachBot.strategyAsBot1;
+                            if (StrategiesForEachBot.strategyAsBot1 != null)
+                                strategy = StrategiesForEachBot.strategyAsBot1;
                             break;
                         case 2:
-                            strategy = StrategiesForEachBot.strategyAsBot2;
+                            if (StrategiesForEachBot.strategyAsBot2 != null)
+                                strategy = StrategiesForEachBot.strategyAsBot2;
                             break;
                         case 3:
-                            strategy = StrategiesForEachBot.strategyAsBot3;
+                            if (StrategiesForEachBot.strategyAsBot3 != null)
+                                strategy = StrategiesForEachBot.strategyAsBot3;
                             break;
                     }
 
