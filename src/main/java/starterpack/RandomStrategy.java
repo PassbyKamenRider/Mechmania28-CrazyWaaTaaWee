@@ -4,10 +4,24 @@ import starterpack.player.CharacterClass;
 import starterpack.player.Item;
 import starterpack.player.Position;
 import starterpack.util.Utility;
+import StarterPack.player.CharacterClass;
+import StarterPack.player.Item;
+import StarterPack.player.Position;
+import StarterPack.util.Utility;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomStrategy implements Strategy{
+
+    public static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(Main.class.getName());
+    static {
+        Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.DEBUG);
+    }
+
     public CharacterClass strategyInitialize() {
         return CharacterClass.WIZARD;
     }
@@ -28,11 +42,11 @@ public class RandomStrategy implements Strategy{
     public int attackActionDecision(GameState gameState, int myPlayerIndex) {
         int res = 0;
         for (int i = 0; i < 4; i++) {
-            System.out.print("distance of " + i + ": ");
-            System.out.println(Utility.squareDistance(
+            LOGGER.debug("distance of " + i + ": ");
+            LOGGER.debug(Utility.squareDistance(
                     gameState.getPlayerStateByIndex(myPlayerIndex).getPosition(),
                     gameState.getPlayerStateByIndex(i).getPosition()));
-            System.out.println("my range: " + gameState.getPlayerStateByIndex(myPlayerIndex).getCharacterClass().getStatSet().getRange());
+            LOGGER.debug("my range: " + gameState.getPlayerStateByIndex(myPlayerIndex).getCharacterClass().getStatSet().getRange());
 
             if (i != myPlayerIndex ) {
                     if (Utility.squareDistance(
