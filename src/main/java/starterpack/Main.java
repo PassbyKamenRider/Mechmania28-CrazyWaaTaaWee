@@ -1,5 +1,11 @@
 package starterpack;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 import starterpack.action.AttackAction;
 import starterpack.action.BuyAction;
 import starterpack.action.MoveAction;
@@ -7,12 +13,11 @@ import starterpack.action.UseAction;
 import starterpack.networking.Client;
 import starterpack.networking.CommState;
 import starterpack.networking.Router;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.config.Configurator;
+import starterpack.strategy.RandomStrategy;
+import starterpack.strategy.StrategiesForEachBot;
+import starterpack.strategy.Strategy;
+
+import static starterpack.Config.PORT;
 
 
 public class Main {
@@ -28,7 +33,7 @@ public class Main {
         Strategy strategy = new RandomStrategy();
         int playerIndex = -1;
 
-        Client client = new Client(Integer.parseInt(args[0]));
+        Client client = new Client(PORT);
         while (!client.isConnected()) {
             client.connect();
             if(!client.isConnected()) {
@@ -50,9 +55,22 @@ public class Main {
                     playerIndex = Integer.parseInt(read);
                     LOGGER.debug("Received player index: " + read);
 
-                    if (playerIndex == 0) {
-                        strategy = new CrashingStrategy();
+                    switch (playerIndex) {
+                        case 0:
+                            strategy = StrategiesForEachBot.strategyAsBot0;
+                            break;
+                        case 1:
+                            strategy = StrategiesForEachBot.strategyAsBot1;
+                            break;
+                        case 2:
+                            strategy = StrategiesForEachBot.strategyAsBot2;
+                            break;
+                        case 3:
+                            strategy = StrategiesForEachBot.strategyAsBot3;
+                            break;
                     }
+
+
                     commState = CommState.CLASS_REPORT;
                     break;
                 case CLASS_REPORT:

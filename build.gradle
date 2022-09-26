@@ -27,7 +27,7 @@ test {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'StarterPack.Main'
+                'Main-Class': 'starterpack.Main'
         )
     }
 

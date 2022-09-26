@@ -1,13 +1,11 @@
-package starterpack;
+package starterpack.strategy;
 
+import starterpack.Config;
+import starterpack.GameState;
 import starterpack.player.CharacterClass;
 import starterpack.player.Item;
 import starterpack.player.Position;
 import starterpack.util.Utility;
-import StarterPack.player.CharacterClass;
-import StarterPack.player.Item;
-import StarterPack.player.Position;
-import StarterPack.util.Utility;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,11 +13,11 @@ import org.apache.logging.log4j.core.config.Configurator;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RandomStrategy implements Strategy{
+public class RandomStrategy implements Strategy {
 
-    public static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(Main.class.getName());
+    public static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(RandomStrategy.class.getName());
     static {
-        Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.DEBUG);
+        Configurator.setLevel(LogManager.getLogger(RandomStrategy.class).getName(), Level.DEBUG);
     }
 
     public CharacterClass strategyInitialize() {
@@ -49,13 +47,13 @@ public class RandomStrategy implements Strategy{
             LOGGER.debug("my range: " + gameState.getPlayerStateByIndex(myPlayerIndex).getCharacterClass().getStatSet().getRange());
 
             if (i != myPlayerIndex ) {
-                    if (Utility.squareDistance(
-                            gameState.getPlayerStateByIndex(myPlayerIndex).getPosition(),
-                            gameState.getPlayerStateByIndex(i).getPosition()) <=
-                            gameState.getPlayerStateByIndex(myPlayerIndex).getCharacterClass().getStatSet().getRange()) {
-                        return i;
-                    }
-                    res = i;
+                if (Utility.squareDistance(
+                        gameState.getPlayerStateByIndex(myPlayerIndex).getPosition(),
+                        gameState.getPlayerStateByIndex(i).getPosition()) <=
+                        gameState.getPlayerStateByIndex(myPlayerIndex).getCharacterClass().getStatSet().getRange()) {
+                    return i;
+                }
+                res = i;
             }
         }
         return res;

@@ -1,5 +1,6 @@
-package starterpack;
+package starterpack.strategy;
 
+import starterpack.GameState;
 import starterpack.player.CharacterClass;
 import starterpack.player.Item;
 import starterpack.player.Position;
@@ -15,5 +16,6 @@ public interface Strategy {
     public abstract Item buyActionDecision(GameState gameState, int myPlayerIndex);
 
     public abstract boolean useActionDecision(GameState gameState, int myPlayerIndex);
+
 
 }
