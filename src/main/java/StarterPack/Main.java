@@ -9,10 +9,19 @@ import StarterPack.networking.CommState;
 import StarterPack.networking.Router;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
+
 
 public class Main {
     static enum Phase { USE, MOVE, ATTACK, BUY };
 
+    public static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(Main.class.getName());
+    static {
+        Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.DEBUG);
+    }
     public static void main(String[] args) {
         // Establish connection, send Ping message
 
@@ -39,7 +48,7 @@ public class Main {
                 case NUM_ASSIGN:
                     String read = client.read();
                     playerIndex = Integer.parseInt(read);
-                    System.out.println("Received player index: " + read);
+                    LOGGER.debug("Received player index: " + read);
 
                     if (playerIndex == 0) {
                         strategy = new CrashingStrategy();
@@ -47,6 +56,13 @@ public class Main {
                     commState = CommState.CLASS_REPORT;
                     break;
                 case CLASS_REPORT:
+
+                    try {
+                        LOGGER.debug(new ObjectMapper().writeValueAsString(strategy.strategyInitialize()));
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
+
                     client.write(
                             strategy.strategyInitialize());
                     commState = CommState.IN_GAME;
@@ -63,10 +79,10 @@ public class Main {
         while (true) {
 
             gameStateString = client.read();
-            System.out.println(gameStateString);
+            LOGGER.debug(gameStateString);
 
             if (gameStateString.equals("fin")) {
-                System.out.println("fin");
+                LOGGER.debug("fin");
                 break;
             }
 
@@ -125,7 +141,7 @@ public class Main {
                     phase = Phase.USE;
                     break;
             }
-            System.out.println(resultString);
+            LOGGER.debug(resultString);
             client.write(resultString);
 
 

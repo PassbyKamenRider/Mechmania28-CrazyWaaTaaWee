@@ -29,6 +29,17 @@ public class GameState {
           new Position(0, BOARD_SIZE-1)
   );
 
+  @JsonProperty
+  private int turn;
+
+  public int getTurn() {
+    return turn;
+  }
+
+  public void setTurn(int turn) {
+    this.turn = turn;
+  }
+
   public GameState() {
   }
 
