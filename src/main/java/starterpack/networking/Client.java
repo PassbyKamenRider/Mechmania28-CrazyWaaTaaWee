@@ -2,6 +2,11 @@ package starterpack.networking;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
+import starterpack.Main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +21,9 @@ public class Client {
   private PrintWriter out;
   private boolean connected = false;
 
+  private static final Logger LOGGER = LogManager.getLogger(Client.class.getName());
+
+
   public Client(int portNumber) {
     this.portNumber = portNumber;
   }
@@ -28,7 +36,7 @@ public class Client {
       this.out = new PrintWriter(socket.getOutputStream(), true);
       this.connected = true;
     } catch (IOException e) {
-      e.printStackTrace();
+      LOGGER.info("Connect to engine failed...");
     }
   }
 

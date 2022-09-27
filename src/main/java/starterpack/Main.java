@@ -25,14 +25,16 @@ public class Main {
     static enum Phase { USE, MOVE, ATTACK, BUY };
 
     private static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(Main.class.getName());
-    static {
-        Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.INFO);
-    }
+
     public static void main(String[] args) {
         // Establish connection, send Ping message
 
         if (args.length > 0 && args[0].equals("debug")) {
             Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.DEBUG);
+            Configurator.setLevel(LogManager.getLogger(Client.class).getName(), Level.DEBUG);
+        } else {
+            Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.INFO);
+            Configurator.setLevel(LogManager.getLogger(Client.class).getName(), Level.INFO);
         }
 
         Strategy strategy = new RandomStrategy();
