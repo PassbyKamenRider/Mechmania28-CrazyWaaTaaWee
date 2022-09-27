@@ -24,7 +24,7 @@ import static starterpack.Config.PORT;
 public class Main {
     static enum Phase { USE, MOVE, ATTACK, BUY };
 
-    private static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(Main.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
         // Establish connection, send Ping message
