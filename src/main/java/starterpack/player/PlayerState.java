@@ -22,9 +22,6 @@ public class PlayerState {
 
   @JsonProperty("score")
   private int score;
-
-  @JsonIgnore private int effectTimer;
-
   @JsonProperty("health")
   private int health;
 
@@ -60,47 +57,31 @@ public class PlayerState {
     gold = amount;
   }
 
-  public void incrementGold(int amount) {
-    gold += amount;
+  @JsonProperty("stat_set")
+  private StatSet statSet;
+
+  public StatSet getStatSet() {
+    return statSet;
   }
 
-  public void decrementGold(int amount) {
-    gold -= amount;
-    if (gold < 0) gold = 0;
+  public void setStatSet(StatSet statSet) {
+    this.statSet = statSet;
   }
 
-  public int getEffectTimer() {
-    return this.effectTimer;
+  public int getHealth() {
+    return health;
   }
 
-  public void setEffectTimer(int effectTimer) {
-    this.effectTimer = effectTimer;
+  public void setHealth(int health) {
+    this.health = health;
   }
 
-  public void decrementEffectTimer() {
-    this.effectTimer --;
+  public int getScore() {
+    return score;
   }
 
-  public void incrementCurrHealth(int amount) {
-    health += amount;
-    health %= computeEffectiveStatSet().getMaxHealth();
-  }
-
-  /**
-   * Returns the effective {@link StatSet} of the player, defined as the base StatSet of their
-   * {@link CharacterClass} and the buff/debuff StatSet of their active {@link Item}.
-   *
-   * @return Effective StatSet.
-   */
-  public StatSet computeEffectiveStatSet() {
-    // Item is either permanent or the buff is still in effect
-    if (this.effectTimer != 0) {
-      return characterClass.getStatSet().plus(item.getStatSet());
-    }
-    // No effective item
-    else {
-      return characterClass.getStatSet();
-    }
+  public void setScore(int score) {
+    this.score = score;
   }
 
   public Position getPosition() {
@@ -111,7 +92,4 @@ public class PlayerState {
     this.position = position;
   }
 
-  public void incrementScore() {
-    score++;
-  }
 }
