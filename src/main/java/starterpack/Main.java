@@ -31,6 +31,10 @@ public class Main {
     public static void main(String[] args) {
         // Establish connection, send Ping message
 
+        if (args.length > 0 && args[0].equals("debug")) {
+            Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.DEBUG);
+        }
+
         Strategy strategy = new RandomStrategy();
         int playerIndex = -1;
 
