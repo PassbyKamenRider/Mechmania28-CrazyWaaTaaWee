@@ -17,7 +17,7 @@ public class RandomStrategy implements Strategy {
 
     public static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(RandomStrategy.class.getName());
     static {
-        Configurator.setLevel(LogManager.getLogger(RandomStrategy.class).getName(), Level.DEBUG);
+        Configurator.setLevel(LogManager.getLogger(RandomStrategy.class).getName(), Level.INFO);
     }
 
     public CharacterClass strategyInitialize() {
