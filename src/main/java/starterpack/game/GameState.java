@@ -1,5 +1,6 @@
-package starterpack;
+package starterpack.game;
 
+import starterpack.Config;
 import starterpack.action.AttackAction;
 import starterpack.action.BuyAction;
 import starterpack.action.MoveAction;

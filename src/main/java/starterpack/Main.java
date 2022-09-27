@@ -10,6 +10,7 @@ import starterpack.action.AttackAction;
 import starterpack.action.BuyAction;
 import starterpack.action.MoveAction;
 import starterpack.action.UseAction;
+import starterpack.game.GameState;
 import starterpack.networking.Client;
 import starterpack.networking.CommState;
 import starterpack.networking.Router;

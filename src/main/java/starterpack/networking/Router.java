@@ -1,6 +1,6 @@
 package starterpack.networking;
 
-import starterpack.GameState;
+import starterpack.game.GameState;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

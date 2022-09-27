@@ -1,7 +1,7 @@
 package starterpack.strategy;
 
 import starterpack.Config;
-import starterpack.GameState;
+import starterpack.game.GameState;
 import starterpack.player.CharacterClass;
 import starterpack.player.Item;
 import starterpack.player.Position;
@@ -40,13 +40,8 @@ public class RandomStrategy implements Strategy {
     public int attackActionDecision(GameState gameState, int myPlayerIndex) {
         int res = 0;
         for (int i = 0; i < 4; i++) {
-            LOGGER.debug("distance of " + i + ": ");
-            LOGGER.debug(Utility.squareDistance(
-                    gameState.getPlayerStateByIndex(myPlayerIndex).getPosition(),
-                    gameState.getPlayerStateByIndex(i).getPosition()));
-            LOGGER.debug("my range: " + gameState.getPlayerStateByIndex(myPlayerIndex).getCharacterClass().getStatSet().getRange());
-
-            if (i != myPlayerIndex ) {
+            
+            if (i != myPlayerIndex) {
                 if (Utility.squareDistance(
                         gameState.getPlayerStateByIndex(myPlayerIndex).getPosition(),
                         gameState.getPlayerStateByIndex(i).getPosition()) <=

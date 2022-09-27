@@ -1,6 +1,6 @@
 package starterpack.strategy;
 
-import starterpack.GameState;
+import starterpack.game.GameState;
 import starterpack.player.CharacterClass;
 import starterpack.player.Item;
 import starterpack.player.Position;
