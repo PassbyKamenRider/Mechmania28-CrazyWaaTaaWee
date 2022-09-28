@@ -1,5 +1,8 @@
 package starterpack.player;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  *
  */
@@ -9,7 +12,8 @@ public class StatSet {
   private int speed;
   private int range;
 
-  public StatSet(int maxHealth, int damage, int speed, int range) {
+  @JsonCreator
+  public StatSet(@JsonProperty("maxHealth") int maxHealth, @JsonProperty("damage") int damage, @JsonProperty("speed") int speed, @JsonProperty("range") int range) {
     this.maxHealth = maxHealth;
     this.damage = damage;
     this.speed = speed;

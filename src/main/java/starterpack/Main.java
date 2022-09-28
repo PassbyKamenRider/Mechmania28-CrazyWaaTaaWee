@@ -18,8 +18,6 @@ import starterpack.strategy.RandomStrategy;
 import starterpack.strategy.StrategiesForEachBot;
 import starterpack.strategy.Strategy;
 
-import static starterpack.Config.PORT;
-
 
 public class Main {
     static enum Phase { USE, MOVE, ATTACK, BUY };
@@ -29,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
         // Establish connection, send Ping message
 
-        if (args.length > 0 && args[0].equals("debug")) {
+        if (args.length >= 2 && args[1].equals("debug")) {
             Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.DEBUG);
             Configurator.setLevel(LogManager.getLogger(Client.class).getName(), Level.DEBUG);
         } else {
@@ -37,10 +35,30 @@ public class Main {
             Configurator.setLevel(LogManager.getLogger(Client.class).getName(), Level.INFO);
         }
 
-        Strategy strategy = new RandomStrategy();
+
+
         int playerIndex = -1;
 
-        Client client = new Client(PORT);
+        if (args.length >= 1) {
+
+            try {
+                playerIndex = Integer.parseInt(args[0]);
+            } catch (NumberFormatException e) {
+                LOGGER.debug("Invalid player number.");
+                return;
+            }
+
+            if (playerIndex < 0 || playerIndex >= Config.MAX_PLAYERS) {
+                LOGGER.debug("Player number out of bounds.");
+                return;
+            }
+        } else {
+            LOGGER.debug("Please specify a player number.");
+        }
+
+        Strategy strategy = new RandomStrategy();
+
+        Client client = new Client(Config.PORTS[playerIndex]);
         while (!client.isConnected()) {
             client.connect();
             if(!client.isConnected()) {
