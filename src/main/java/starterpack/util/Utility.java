@@ -3,13 +3,24 @@ package starterpack.util;
 import starterpack.Config;
 import starterpack.player.Position;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static starterpack.Config.BOARD_SIZE;
 
 public class Utility {
   public static int manhattanDistance(Position p1, Position p2) {
     return Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY());
   }
+
+  public static final List<Position> spawnPoints = Arrays.asList(
+          new Position(0, 0),
+          new Position(BOARD_SIZE-1, 0),
+          new Position(BOARD_SIZE-1, BOARD_SIZE-1),
+          new Position(0, BOARD_SIZE-1)
+  );
 
   public static int squareDistance(Position p1, Position p2) {
     return Math.max(Math.abs(p1.getX()-p2.getX()), Math.abs(p1.getY()- p2.getY()));
