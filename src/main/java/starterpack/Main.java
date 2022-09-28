@@ -14,9 +14,8 @@ import starterpack.game.GameState;
 import starterpack.networking.Client;
 import starterpack.networking.CommState;
 import starterpack.networking.Router;
-import starterpack.strategy.RandomStrategy;
-import starterpack.strategy.StrategiesForEachBot;
 import starterpack.strategy.Strategy;
+import starterpack.strategy.StrategyConfig;
 
 
 public class Main {
@@ -56,7 +55,7 @@ public class Main {
             LOGGER.debug("Please specify a player number.");
         }
 
-        Strategy strategy = new RandomStrategy();
+        Strategy strategy = StrategyConfig.getStrategy(playerIndex);
 
         Client client = new Client(Config.PORTS[playerIndex]);
         while (!client.isConnected()) {
@@ -79,25 +78,6 @@ public class Main {
                     String read = client.read();
                     playerIndex = Integer.parseInt(read);
                     LOGGER.debug("Received player index: " + read);
-
-                    switch (playerIndex) {
-                        case 0:
-                            if (StrategiesForEachBot.strategyForBot0 != null)
-                                strategy = StrategiesForEachBot.strategyForBot0;
-                            break;
-                        case 1:
-                            if (StrategiesForEachBot.strategyForBot1 != null)
-                                strategy = StrategiesForEachBot.strategyForBot1;
-                            break;
-                        case 2:
-                            if (StrategiesForEachBot.strategyForBot2 != null)
-                                strategy = StrategiesForEachBot.strategyForBot2;
-                            break;
-                        case 3:
-                            if (StrategiesForEachBot.strategyForBot3 != null)
-                                strategy = StrategiesForEachBot.strategyForBot3;
-                            break;
-                    }
 
 
                     commState = CommState.CLASS_REPORT;
