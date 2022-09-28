@@ -2,11 +2,8 @@ package starterpack.networking;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.config.Configurator;
-import starterpack.Main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,12 +43,14 @@ public class Client {
    * @return Line read from server.
    */
   public String read() {
-      try {
-        return in.readLine();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    return null;
+    String readLine = null;
+    try {
+      readLine = in.readLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    LOGGER.debug("Received message " + readLine);
+    return readLine;
   }
 
   /**
@@ -73,6 +72,7 @@ public class Client {
    * @param string String to be written.
    */
   public void write(String string) {
+    LOGGER.debug("Sending message " + string);
     out.println(string);
   }
 

@@ -24,7 +24,7 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
-        // Establish connection, send Ping message
+        LOGGER.info("Welcome to Mechmania 28 Java bot!");
 
         if (System.getProperty("debug") != null && System.getProperty("debug").equals("true")) {
             Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.DEBUG);
@@ -41,16 +41,16 @@ public class Main {
             try {
                 playerIndex = Integer.parseInt(args[0]);
             } catch (NumberFormatException e) {
-                LOGGER.debug("Invalid player number.");
+                LOGGER.debug("Invalid or empty player number. Please specify a valid player number.");
                 return;
             }
 
             if (playerIndex < 0 || playerIndex >= Config.MAX_PLAYERS) {
-                LOGGER.debug("Player number out of bounds.");
+                LOGGER.debug("Invalid or empty player number. Please specify a valid player number.");
                 return;
             }
         } else {
-            LOGGER.debug("Please specify a player number.");
+            LOGGER.debug("Invalid or empty player number. Please specify a valid player number.");
         }
 
         Strategy strategy = StrategyConfig.getStrategy(playerIndex);
@@ -65,28 +65,23 @@ public class Main {
             }
         }
 
+        LOGGER.info("Connected to Engine. Setting up for game...");
+
         CommState commState = CommState.START;
         while (commState != CommState.END) {
             switch (commState) {
                 case START:
+                    LOGGER.info("Waiting for wake...");
                     while (!client.read().equals("wake")) continue;
                     commState = CommState.NUM_ASSIGN;
                     break;
                 case NUM_ASSIGN:
                     String read = client.read();
                     playerIndex = Integer.parseInt(read);
-                    LOGGER.debug("Received player index: " + read);
-
-
+                    LOGGER.info("Received player index: " + read);
                     commState = CommState.CLASS_REPORT;
                     break;
                 case CLASS_REPORT:
-
-                    try {
-                        LOGGER.debug(new ObjectMapper().writeValueAsString(strategy.strategyInitialize()));
-                    } catch (JsonProcessingException e) {
-                        throw new RuntimeException(e);
-                    }
 
                     client.write(
                             strategy.strategyInitialize());
@@ -98,16 +93,15 @@ public class Main {
             }
         }
 
+        LOGGER.info("Finished setup. Running game...");
 
         String gameStateString;
         Phase phase = Phase.USE;
         while (true) {
 
             gameStateString = client.read();
-            LOGGER.debug(gameStateString);
 
             if (gameStateString.equals("fin")) {
-                LOGGER.debug("fin");
                 break;
             }
 
@@ -117,6 +111,7 @@ public class Main {
             String resultString = "";
             switch (phase) {
                 case USE:
+                    LOGGER.info("Turn: " + gameState.getTurn());
                     try {
                         resultString = objectMapper.writeValueAsString(new UseAction(playerIndex,
                                 strategy.useActionDecision(gameState, playerIndex)));
@@ -166,13 +161,13 @@ public class Main {
                     phase = Phase.USE;
                     break;
             }
-            LOGGER.debug(resultString);
+
             client.write(resultString);
 
 
         }
 
         client.disconnect();
-
+        LOGGER.info("Game ended. Check your output at Engine\\gamelogs.");
     }
 }
