@@ -26,15 +26,13 @@ public class Main {
     public static void main(String[] args) {
         // Establish connection, send Ping message
 
-        if (args.length >= 2 && args[1].equals("debug")) {
+        if (System.getProperty("debug") != null && System.getProperty("debug").equals("true")) {
             Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.DEBUG);
             Configurator.setLevel(LogManager.getLogger(Client.class).getName(), Level.DEBUG);
         } else {
             Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.INFO);
             Configurator.setLevel(LogManager.getLogger(Client.class).getName(), Level.INFO);
         }
-
-
 
         int playerIndex = -1;
 
