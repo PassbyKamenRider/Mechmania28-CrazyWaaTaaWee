@@ -20,8 +20,11 @@ Finally, compile your bot by using `./gradlew build`, `./gradlew.bat build` or `
 
 `java -jar path/to/jar <player_number>` or the helper scripts `./start-4-java-bots.bat` and `./start-4-java-bots.sh`
 
-to run 4 copies of your bot with the [Engine](https://github.com/MechMania-28/Engine) to test them out, and use `mm push` (TODO) to submit to the tournament!
+to run 4 copies of your bot alongside [Engine](https://github.com/MechMania-28/Engine) to test them out, and use `mm push` (TODO) to submit to the tournament!
 
 Again, make sure you are familiar with the mechanisms of the game and the Strategy class. If you have any questions, do not hesitate to contact us through Discord or in person with any questions!
 
 Good luck!
+
+### Note
+You can enable debug output with option `-Ddebug=true`, which will make the bot print out every message it sends to the engine.
