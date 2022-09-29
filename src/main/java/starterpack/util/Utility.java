@@ -1,7 +1,7 @@
 package starterpack.util;
 
 import starterpack.Config;
-import starterpack.player.Position;
+import starterpack.game.Position;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +22,7 @@ public class Utility {
           new Position(0, BOARD_SIZE-1)
   );
 
-  public static int squareDistance(Position p1, Position p2) {
+  public static int chebyshevDistance(Position p1, Position p2) {
     return Math.max(Math.abs(p1.getX()-p2.getX()), Math.abs(p1.getY()- p2.getY()));
   }
 

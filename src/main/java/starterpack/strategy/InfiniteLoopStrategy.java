@@ -1,9 +1,9 @@
 package starterpack.strategy;
 
 import starterpack.game.GameState;
-import starterpack.player.CharacterClass;
-import starterpack.player.Item;
-import starterpack.player.Position;
+import starterpack.game.CharacterClass;
+import starterpack.game.Item;
+import starterpack.game.Position;
 
 public class InfiniteLoopStrategy implements Strategy{
     @Override

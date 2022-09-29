@@ -2,7 +2,7 @@ package starterpack.action;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import starterpack.player.Item;
+import starterpack.game.Item;
 
 public class BuyAction extends Action {
 

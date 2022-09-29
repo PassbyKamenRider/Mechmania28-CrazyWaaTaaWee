@@ -1,4 +1,4 @@
-package starterpack.player;
+package starterpack.game;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,10 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  */
 public class StatSet {
-  private int maxHealth;
-  private int damage;
-  private int speed;
-  private int range;
+  private final int maxHealth;
+  private final int damage;
+  private final int speed;
+  private final int range;
 
   @JsonCreator
   public StatSet(@JsonProperty("maxHealth") int maxHealth, @JsonProperty("damage") int damage, @JsonProperty("speed") int speed, @JsonProperty("range") int range) {

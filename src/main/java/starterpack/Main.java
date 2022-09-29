@@ -13,26 +13,31 @@ import starterpack.action.UseAction;
 import starterpack.game.GameState;
 import starterpack.networking.Client;
 import starterpack.networking.CommState;
-import starterpack.networking.Router;
 import starterpack.strategy.Strategy;
 import starterpack.strategy.StrategyConfig;
 
 
 public class Main {
-    static enum Phase { USE, MOVE, ATTACK, BUY };
+    enum Phase { USE, MOVE, ATTACK, BUY }
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class.getName());
 
+    private static final int RETRY_MILIS = 1000;
+
     public static void main(String[] args) {
-        LOGGER.info("Welcome to Mechmania 28 Java bot!");
 
         if (System.getProperty("debug") != null && System.getProperty("debug").equals("true")) {
             Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.DEBUG);
             Configurator.setLevel(LogManager.getLogger(Client.class).getName(), Level.DEBUG);
+            Configurator.setLevel(LogManager.getLogger(Strategy.class).getName(), Level.DEBUG);
         } else {
             Configurator.setLevel(LogManager.getLogger(Main.class).getName(), Level.INFO);
             Configurator.setLevel(LogManager.getLogger(Client.class).getName(), Level.INFO);
+            Configurator.setLevel(LogManager.getLogger(Strategy.class).getName(), Level.INFO);
+
         }
+
+        LOGGER.info("Welcome to Mechmania 28 Java bot!");
 
         int playerIndex = -1;
 
@@ -60,10 +65,12 @@ public class Main {
             client.connect();
             if(!client.isConnected()) {
                 try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {}
+                    Thread.sleep(RETRY_MILIS);
+                } catch (InterruptedException ignored) {
+                }
             }
         }
+
 
         LOGGER.info("Connected to Engine. Setting up for game...");
 
@@ -105,7 +112,7 @@ public class Main {
                 break;
             }
 
-            GameState gameState = Router.parseMessageAsGameState(gameStateString);
+            GameState gameState = Client.parseMessageAsGameState(gameStateString);
 
             ObjectMapper objectMapper = new ObjectMapper();
             String resultString = "";
@@ -168,6 +175,6 @@ public class Main {
         }
 
         client.disconnect();
-        LOGGER.info("Game ended. Check your output at Engine\\gamelogs.");
+        LOGGER.info("Completed! Check your output at Engine\\gamelogs.");
     }
 }

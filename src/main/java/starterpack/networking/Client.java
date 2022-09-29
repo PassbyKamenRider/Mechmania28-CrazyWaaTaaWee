@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import starterpack.game.GameState;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -86,6 +87,21 @@ public class Client {
       }
     }
     this.connected = false;
+  }
+
+  public static GameState parseMessageAsGameState(String message) {
+
+    GameState result;
+    try {
+      result = new ObjectMapper().readValue(message, GameState.class);
+      return result;
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    return null;
   }
 
   public boolean isConnected() {

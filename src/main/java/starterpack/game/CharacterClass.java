@@ -1,4 +1,4 @@
-package starterpack.player;
+package starterpack.game;
 
 public enum CharacterClass {
   KNIGHT(9, 6, 2, 1),

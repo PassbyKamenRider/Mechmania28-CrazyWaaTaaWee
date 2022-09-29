@@ -2,9 +2,6 @@ package starterpack.game;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import starterpack.player.CharacterClass;
-import starterpack.player.PlayerState;
-import starterpack.player.Position;
 import starterpack.util.Utility;
 
 import java.util.Arrays;
