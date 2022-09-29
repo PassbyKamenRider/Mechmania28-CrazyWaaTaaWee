@@ -8,11 +8,7 @@ public class StrategyConfig {
      * @return A Strategy object.
      */
     public static Strategy getStrategy(int playerIndex) {
-        if (playerIndex == 0) {
-            /*
-            If I am player 0, use Strategy...?
-             */
-        }
+
         return new RandomStrategy();
     }
 }
