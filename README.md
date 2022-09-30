@@ -16,11 +16,11 @@ You'll primarily need to look at the classes within the `starterpack.game` packa
 
 We have provided some useful stuff in the `starterpack.util` package. `Utility` includes some mathematical and random functions and `Logger` contains a logging object that we recommend using for printing and debugging. Try `Logger.LOGGER.info("your_message")`. It does the same job as `System.out.println` while keeping the output tidy, and prints out more information.
 
-Finally, compile your bot by using `./gradlew build`, `./gradlew.bat build` or `sh gradlew and you will find the executable jar under `build/libs`. Run any number of bots using
+Finally, compile your bot by using `./gradlew build`, `./gradlew.bat build` or `sh ./gradlew` and you will find the executable jar under `build/libs`. Run any number of bots using
 
-`java -jar path/to/jar <player_number>` or the helper scripts `./start-4-java-bots.bat` and `./start-4-java-bots.sh`
+`java -jar path/to/jar <player_number>` or the windows helper script (this is a byproduct of devloping so sorry mac users) `./start-4-java-bots.bat`, which run 4 copies of your bot
 
-to run 4 copies of your bot alongside [Engine](https://github.com/MechMania-28/Engine) to test them out, and use `mm push` (TODO) to submit to the tournament!
+alongside [Engine](https://github.com/MechMania-28/Engine) to test them out, and use `mm push` (TODO) to submit to the tournament!
 
 Again, make sure you are familiar with the mechanisms of the game and the Strategy class. If you have any questions, do not hesitate to contact us through Discord or in person with any questions!
 
