@@ -91,7 +91,7 @@ public class Main {
                 case CLASS_REPORT:
 
                     client.write(
-                            strategy.strategyInitialize());
+                            strategy.strategyInitialize(playerIndex));
                     commState = CommState.IN_GAME;
                     break;
                 case IN_GAME:

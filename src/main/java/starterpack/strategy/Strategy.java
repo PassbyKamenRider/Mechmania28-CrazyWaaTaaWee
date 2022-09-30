@@ -11,7 +11,7 @@ public interface Strategy {
      * Before the game starts, pick a class for your bot to start with.
      * @return A game.CharacterClass Enum.
      */
-    CharacterClass strategyInitialize();
+    CharacterClass strategyInitialize(int myPlayerIndex);
 
     /**
      * Each turn, decide if you should use the item you're holding. Do not try to use the

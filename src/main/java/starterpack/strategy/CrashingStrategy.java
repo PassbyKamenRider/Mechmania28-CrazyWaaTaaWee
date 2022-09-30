@@ -7,7 +7,7 @@ import starterpack.game.Position;
 
 public class CrashingStrategy implements Strategy {
     @Override
-    public CharacterClass strategyInitialize() {
+    public CharacterClass strategyInitialize(int myPlayerIndex) {
         return CharacterClass.KNIGHT;
     }
 

@@ -5,7 +5,6 @@ import starterpack.game.CharacterClass;
 import starterpack.game.GameState;
 import starterpack.game.Item;
 import starterpack.game.Position;
-import starterpack.util.Logger;
 import starterpack.util.Utility;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,10 +12,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandomStrategy implements Strategy {
 
 
-    public CharacterClass strategyInitialize() {
-        Logger.LOGGER.info("info");
-        Logger.LOGGER.debug("debug");
-        Logger.LOGGER.warn("warn");
+    public CharacterClass strategyInitialize(int myPlayerIndex) {
+
         return Utility.randomEnum(CharacterClass.class);
     }
 
@@ -25,7 +22,8 @@ public class RandomStrategy implements Strategy {
             int randomX = ThreadLocalRandom.current().nextInt(0, Config.BOARD_SIZE + 1);
             int randomY = ThreadLocalRandom.current().nextInt(0, Config.BOARD_SIZE + 1);
 
-            if (Utility.manhattanDistance(new Position(randomX, randomY),
+            if (new Position(randomX, randomY) == Utility.spawnPoints.get(myPlayerIndex) ||
+                    Utility.manhattanDistance(new Position(randomX, randomY),
                     gameState.getPlayerStateByIndex(myPlayerIndex).getPosition())
                     <= gameState.getPlayerStateByIndex(myPlayerIndex).getCharacterClass().getStatSet().getSpeed()) {
                 return new Position(randomX, randomY);
@@ -55,6 +53,6 @@ public class RandomStrategy implements Strategy {
     }
 
     public boolean useActionDecision(GameState gameState, int myPlayerIndex) {
-        return true;
+        return Utility.randomInt(0, 100) % 2 == 0;
     }
 }

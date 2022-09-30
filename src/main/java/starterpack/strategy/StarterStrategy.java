@@ -12,7 +12,7 @@ public class StarterStrategy implements Strategy {
      * Also, feel free to initialize some variables you need here!
      * @return The CharacterClass you decided when the game starts.
      */
-    public CharacterClass strategyInitialize() {
+    public CharacterClass strategyInitialize(int myPlayerIndex) {
         return CharacterClass.KNIGHT;
     }
 
