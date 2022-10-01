@@ -8,6 +8,6 @@ public class StrategyConfig {
      * @return A Strategy object.
      */
     public static Strategy getStrategy(int playerIndex) {
-        return new RandomStrategy();
+        return new NoStrategy();
     }
 }

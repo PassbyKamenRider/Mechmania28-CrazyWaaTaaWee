@@ -3,6 +3,7 @@ package starterpack.game;
 public class Position {
   private int x;
   private int y;
+  private int hashCode;
 
   public Position() {}
 
@@ -48,5 +49,10 @@ public class Position {
   @Override
   public String toString() {
     return "(" + x + ", " + y + ")";
+  }
+
+  @Override
+  public int hashCode() {
+    return this.hashCode;
   }
 }
